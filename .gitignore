@@ -21,3 +21,8 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/.idea/
+/noxus-draven-data-jpa/noxus-draven-data-jpa.iml
+/noxus-draven-data-jpa/target/
+/noxus-draven-data-jpa/noxus-draven-data-hibernate.iml
+/noxus-draven-data-hibernate/target/
