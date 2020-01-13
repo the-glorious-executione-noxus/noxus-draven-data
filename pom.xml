@@ -15,11 +15,42 @@
     <modelVersion>4.0.0</modelVersion>
     <packaging>pom</packaging>
 
-    <name>noxus-draven-data</name>
+    <name>noxus-draven-datas</name>
 
     <groupId>com.noxus.draven.data</groupId>
-    <artifactId>noxus-draven-data</artifactId>
+    <artifactId>noxus-draven-datas</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <description>Demo project for Spring Boot</description>
+    <properties>
+        <mysql.version>8.0.15</mysql.version>
+        <lombok.version>1.18.10</lombok.version>
 
+    </properties>
+
+
+    <dependencyManagement>
+        <dependencies>
+            <dependency>
+                <groupId>mysql</groupId>
+                <artifactId>mysql-connector-java</artifactId>
+                <version>${mysql.version}</version>
+            </dependency>
+            <dependency>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+                <version>${lombok.version}</version>
+                <optional>true</optional>
+            </dependency>
+        </dependencies>
+    </dependencyManagement>
+
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+            </plugin>
+        </plugins>
+    </build>
 </project>
