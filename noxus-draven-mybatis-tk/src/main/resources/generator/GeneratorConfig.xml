@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+        PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+  <properties resource="generator/generator.properties"/>
+
+  <context id="Mysql" targetRuntime="cn.com.startship.starter.generator.api.IntrospectedTableMyBatis3SimpleImplEx" 
+                      defaultModelType="flat"
+                      introspectedColumnImpl="cn.com.startship.starter.generator.api.IntrospectedColumnEx">
+    <property name="driverClass" value="${datasource.driverClassName}"/>
+    <property name="connectionURL" value="${datasource.url}"/>
+    <property name="userId" value="${datasource.username}"/>
+    <property name="password" value="${datasource.password}"/>
+    <property name="schema" value="${datasource.schema}"/>
+
+    <property name="beginningDelimiter" value="`"/>
+    <property name="endingDelimiter" value="`"/>
+    <property name="javaFileEncoding" value="UTF-8"/>
+    <property name="useMapperCommentGenerator" value="FALSE"/>  
+    <property name="commentClassAuthor" value="${project.author}"/>
+    <property name="uuidField" value="${project.uuidField}"/>
+    <property name="ignoreColumn" value="${project.ignoreColumn}"/>
+
+    <!-- Mapper生成 -->
+    <plugin type="tk.mybatis.mapper.generator.MapperPlugin">
+      <property name="mappers" value="${project.mapperSuperInterface}"/>
+    </plugin>
+    
+    <plugin type="cn.com.startship.starter.generator.plugins.ModelPlugin">
+      <property name="supertInterface" value="${project.modelSuperInterface}"/>
+    </plugin>
+    
+    <plugin type="cn.com.startship.starter.generator.plugins.MapperCommentPlugin"/>
+    <plugin type="org.mybatis.generator.plugins.MapperAnnotationPlugin"/>
+    <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/>
+
+    <!-- 生成复合查询Model -->
+     <plugin type="cn.com.startship.starter.generator.plugins.CompositeModelBeanPlugin">
+       <property name="basePackage" value="${project.basePackage}.domain.model"/>
+       <property name="level" value="${project.level}"/>
+    </plugin>
+    
+    <!-- 生成复合查询Mapper -->
+     <plugin type="cn.com.startship.starter.generator.plugins.CompositeMapperPlugin">
+       <property name="basePackage" value="${project.basePackage}.domain.mapper"/>
+       <property name="mappers" value="${project.mapperSuperInterface}"/>
+    </plugin>
+    
+    <!-- 生成复合查询检索结果Model -->
+     <plugin type="cn.com.startship.starter.generator.plugins.CompositeRecordInternalOutputBeanPlugin">
+       <property name="superClass" value="${project.modelSuperClass}"/>
+       <property name="basePackage" value="${project.basePackage}.bean"/>
+       <property name="level" value="${project.level}"/>
+    </plugin>
+    
+    <!-- 生成插入记录Bean -->
+    <plugin type="cn.com.startship.starter.generator.plugins.InsertInputBeanPlugin">
+       <property name="basePackage" value="${project.basePackage}.bean"/>
+    </plugin>
+    
+    <!-- 生成删除记录Bean -->
+    <plugin type="cn.com.startship.starter.generator.plugins.DeleteInputBeanPlugin">
+       <property name="basePackage" value="${project.basePackage}.bean"/>
+    </plugin>
+    
+    <!-- 生成更新记录Bean -->
+    <plugin type="cn.com.startship.starter.generator.plugins.UpdateInputBeanPlugin">
+       <property name="basePackage" value="${project.basePackage}.bean"/>
+    </plugin>
+    
+    <plugin type="cn.com.startship.starter.generator.plugins.UpdateConditionInputBeanPlugin">
+       <property name="basePackage" value="${project.basePackage}.bean"/>
+       <property name="updateSuperClass" value="cn.com.jbfs.business.data.base.bean.UpdateInputBean"/>
+    </plugin>
+    
+    <!-- 生成内部输出记录Bean -->
+    <plugin type="cn.com.startship.starter.generator.plugins.RecordInternalOutputBeanPlugin">
+       <property name="superClass" value="${project.modelSuperClass}"/>
+       <property name="basePackage" value="${project.basePackage}.bean"/>
+    </plugin>
+    
+    <!-- Service接口 -->
+    <plugin type="cn.com.startship.starter.generator.api.TemplateFilePluginEx">
+		<property name="targetProject" value="${project.baseTarget}" />
+		<property name="targetPackage" value="${project.basePackage}.service" />
+		
+		<property name="templatePath" value="template/service/CrudService.ftl" />
+		
+		<property name="beanKey" value="SERVICE_INTERFACE" />
+		
+		<property name="fileName" value="${tableClass.shortClassName}CrudService.java" />
+		<property name="author" value="${project.author}" />
+		<property name="fwPackage" value="${project.fwPackage}" />
+	</plugin>
+	
+	<!-- Service实现类 -->
+	<plugin type="cn.com.startship.starter.generator.api.TemplateFilePluginEx">
+		<property name="targetProject" value="${project.baseTarget}" />
+		<property name="targetPackage" value="${project.basePackage}.service.impl" />
+		
+		<property name="templatePath" value="template/service/CrudServiceImpl.ftl" />
+		
+		<property name="beanKey" value="SERVICE_INTERFACE_IMPL" />
+		
+		<property name="fileName" value="${tableClass.shortClassName}CrudServiceImpl.java" />
+		<property name="author" value="${project.author}" />
+		<property name="fwPackage" value="${project.fwPackage}" />
+	</plugin>
+	
+	<!-- Service实现类EX -->
+	<plugin type="cn.com.startship.starter.generator.api.TemplateFilePluginEx">
+		<property name="targetProject" value="${project.baseTarget}" />
+		<property name="targetPackage" value="${project.basePackage}.service.implex" />
+		
+		<property name="templatePath" value="template/service/CrudServiceImplEx.ftl" />
+		
+		<property name="beanKey" value="SERVICE_INTERFACE_IMPLEX" />
+		
+		<property name="fileName" value="${tableClass.shortClassName}CrudServiceImplEx.java" />
+		<property name="author" value="${project.author}" />
+		<property name="fwPackage" value="${project.fwPackage}" />
+	</plugin>
+	
+	<!-- Controller实现类 -->
+	<plugin type="cn.com.startship.starter.generator.api.TemplateFilePluginEx">
+		<property name="targetProject" value="${project.baseTarget}" />
+		<property name="targetPackage" value="${project.basePackage}.controller" />
+		
+		<property name="templatePath" value="template/controller/CrudController.ftl" />
+		
+		<property name="beanKey" value="CONTROLLER_INTERFACE" />
+		
+		<property name="fileName" value="${tableClass.shortClassName}CrudController.java" />
+		<property name="author" value="${project.author}" />
+		<property name="fwPackage" value="${project.fwPackage}" />
+	</plugin>
+	
+	<!-- ControllerEx实现类 -->
+	<plugin type="cn.com.startship.starter.generator.api.TemplateFilePluginEx">
+		<property name="targetProject" value="${project.baseTarget}" />
+		<property name="targetPackage" value="${project.basePackage}.controller.implex" />
+		
+		<property name="templatePath" value="template/controller/CrudControllerEx.ftl" />
+		
+		<property name="beanKey" value="CONTROLLEREX_INTERFACE" />
+		
+		<property name="fileName" value="${tableClass.shortClassName}CrudControllerEx.java" />
+		<property name="author" value="${project.author}" />
+		<property name="fwPackage" value="${project.fwPackage}" />
+	</plugin>
+    
+    <commentGenerator type="cn.com.startship.starter.generator.api.MapperCommentGeneratorEx"/>
+      
+    <jdbcConnection driverClass="${datasource.driverClassName}"
+                    connectionURL="${datasource.url}"
+                    userId="${datasource.username}"
+                    password="${datasource.password}">
+      <property name="useInformationSchema" value="true"></property>
+      <property name="characterEncoding" value="UTF-8"></property>
+    </jdbcConnection>
+  
+    <javaModelGenerator targetPackage="${project.basePackage}.domain.model" 
+                        targetProject="${project.baseTarget}"/>
+                        
+    <sqlMapGenerator targetPackage="mapper" 
+                     targetProject="${project.baseXmlTarget}"/>
+                     
+    <javaClientGenerator targetPackage="${project.basePackage}.domain.mapper" 
+                         targetProject="${project.baseTarget}"
+                         type="XMLMAPPER"/>
+
+    <table tableName="user">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+   <!-- <table tableName="ub_like">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="ub_read">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>
+    <table tableName="ub_transmit">
+      <generatedKey column="id" sqlStatement="Mysql" identity="true"/>
+    </table>-->
+  </context>
+</generatorConfiguration>
