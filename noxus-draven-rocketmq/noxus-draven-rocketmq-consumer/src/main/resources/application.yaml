@@ -1,0 +1,6 @@
+rocketmq:
+  nameServer: 116.196.77.250:9876
+  producer:
+    group: my-group
+server:
+  port: 8888

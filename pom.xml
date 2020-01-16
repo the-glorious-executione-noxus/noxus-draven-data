@@ -6,6 +6,7 @@
         <module>noxus-draven-data-jpa</module>
         <module>noxus-draven-data-hibernate</module>
         <module>noxus-draven-mybatis-tk</module>
+        <module>noxus-draven-rocketmq</module>
     </modules>
     <parent>
         <groupId>org.springframework.boot</groupId>

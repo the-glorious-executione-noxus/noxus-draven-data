@@ -29,3 +29,6 @@ hs_err_pid*
 /noxus-draven-data-hibernate/noxus-draven-data-hibernate.iml
 /noxus-draven-datas.iml
 /noxus-draven-mybatis-tk/noxus-draven-mybatis-tk.iml
+/noxus-draven-rocketmq/noxus-draven-rocketmq.iml
+/noxus-draven-rocketmq/noxus-draven-rocketmq-consumer/noxus-draven-rocketmq-consumer.iml
+/noxus-draven-rocketmq/noxus-draven-rocketmq-provider/noxus-draven-rocketmq-provider.iml
